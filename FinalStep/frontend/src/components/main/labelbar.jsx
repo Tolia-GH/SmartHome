@@ -6,11 +6,9 @@ import ListSubheader from '@mui/material/ListSubheader';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HouseIcon from '@mui/icons-material/House';
 import ReportIcon from '@mui/icons-material/Report';
-import BarChartIcon from '@mui/icons-material/BarChart';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import Link from '@mui/material/Link';
-import {AccountCircle} from "@mui/icons-material";
+
 
 export const MainListItems = ({ onItemClick }) => {
     return (
@@ -51,7 +49,7 @@ export const SecondaryListItems = () => {
             </ListSubheader>
             <ListItemButton href="/">
                 <ListItemIcon>
-                    <AssignmentIcon />
+                    <LogoutIcon />
                 </ListItemIcon>
                 <ListItemText primary="Sign out" />
             </ListItemButton>
