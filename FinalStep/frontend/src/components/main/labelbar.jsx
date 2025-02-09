@@ -9,47 +9,52 @@ import ReportIcon from '@mui/icons-material/Report';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import Link from '@mui/material/Link';
 import {AccountCircle} from "@mui/icons-material";
 
-export const mainListItems = (
-    <React.Fragment>
-        <ListItemButton>
-            <ListItemIcon>
-                <AccountCircleIcon />
-            </ListItemIcon>
-            <ListItemText primary="My Profile" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <Diversity1Icon />
-            </ListItemIcon>
-            <ListItemText primary="My Family" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <HouseIcon />
-            </ListItemIcon>
-            <ListItemText primary="My Houses" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <ReportIcon />
-            </ListItemIcon>
-            <ListItemText primary="My Issues" />
-        </ListItemButton>
-    </React.Fragment>
-);
+export const MainListItems = ({ onItemClick }) => {
+    return (
+        <React.Fragment>
+            <ListItemButton onClick={() => onItemClick("My Profile")}>
+                <ListItemIcon>
+                    <AccountCircleIcon />
+                </ListItemIcon>
+                <ListItemText primary="My Profile" />
+            </ListItemButton>
+            <ListItemButton onClick={() => onItemClick("My Family")}>
+                <ListItemIcon>
+                    <Diversity1Icon />
+                </ListItemIcon>
+                <ListItemText primary="My Family" />
+            </ListItemButton>
+            <ListItemButton onClick={() => onItemClick("My Houses")}>
+                <ListItemIcon>
+                    <HouseIcon />
+                </ListItemIcon>
+                <ListItemText primary="My Houses" />
+            </ListItemButton>
+            <ListItemButton onClick={() => onItemClick("My Issues")}>
+                <ListItemIcon>
+                    <ReportIcon />
+                </ListItemIcon>
+                <ListItemText primary="My Issues" />
+            </ListItemButton>
+        </React.Fragment>
+    );
+};
 
-export const secondaryListItems = (
-    <React.Fragment>
-        <ListSubheader component="div" inset>
-
-        </ListSubheader>
-        <ListItemButton href="/">
-            <ListItemIcon>
-                <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Sign out" />
-        </ListItemButton>
-    </React.Fragment>
-);
+export const SecondaryListItems = () => {
+    return (
+        <React.Fragment>
+            <ListSubheader component="div" inset>
+                {/* Placeholder for secondary list header */}
+            </ListSubheader>
+            <ListItemButton href="/">
+                <ListItemIcon>
+                    <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Sign out" />
+            </ListItemButton>
+        </React.Fragment>
+    );
+};
