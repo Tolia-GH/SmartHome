@@ -210,7 +210,7 @@ export function Profile() {
                             // sendAccount(state.firstName, state.lastName, state.password, state.age, state.phone, state.email, state.gender);
                         }}
                     >
-                        Save Changes
+                        Refresh
                     </Button>
                 </Box>
             </Box>

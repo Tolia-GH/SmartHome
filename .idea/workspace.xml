@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afcc4807-f207-4e36-ad66-530491e6a5f7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/ProfileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/response/ProfileResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/frontend/src/components/Copyright.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/SignInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/frontend/src/components/login/signin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/frontend/src/components/login/signin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/frontend/src/components/login/signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/frontend/src/components/login/signup.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinalStep/frontend/src/components/main/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/frontend/src/components/main/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/frontend/src/components/views/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/frontend/src/components/views/profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/frontend/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
