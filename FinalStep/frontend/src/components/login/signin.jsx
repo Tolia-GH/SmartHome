@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import $ from 'jquery'
-import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -13,19 +12,7 @@ import Typography from '@mui/material/Typography';
 import backImg from '../../img/SmartHome.jpg'
 import {createBrowserHistory} from "history";
 import {useState} from "react";
-
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                My Smart Home
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import {Copyright} from "../Copyright";
 
 export default function SignIn() {
 
@@ -45,6 +32,7 @@ export default function SignIn() {
                     window.sessionStorage.setItem("username",username);
                     window.sessionStorage.setItem("password",password);
                     window.sessionStorage.setItem("id",res.id);
+                    console.log(username + '\n' + password)
                     console.log(res.message)
                     alert(res.message)
                     const history = createBrowserHistory();
@@ -59,10 +47,10 @@ export default function SignIn() {
     return (
         <Grid container component="main" sx={{ height: '100vh' }}>
             <CssBaseline />
-            <Grid
+            <Grid //背景图片
                 item
-                xs={false}
-                sm={4}
+                xs={12}
+                sm={12}
                 md={7}
                 sx={{
                     backgroundImage: `url(${backImg})`,
@@ -73,7 +61,19 @@ export default function SignIn() {
                     backgroundPosition: 'center',
                 }}
             />
-            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+            <Grid //登录页面
+                item
+                xs={12}
+                sm={12}
+                md={5}
+                component={Paper}
+                elevation={6}
+                square
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                }}>
                 <Box
                     sx={{
                         my: 8,
@@ -119,7 +119,6 @@ export default function SignIn() {
                             variant="contained"
                             sx={{ mt: 2, mb: 2 }}
                             onClick={() => {
-                                alert(username + "\n" + password)
                                 sendAccount(username, password)
                             }}
                         >

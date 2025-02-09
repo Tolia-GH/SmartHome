@@ -4,27 +4,16 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import $ from 'jquery';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import {FormControl, InputLabel, Select} from "@mui/material";
 import {useState} from "react";
+import {Copyright} from "../Copyright";
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                My Smart Home
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+
 
 export default function SignUp() {
 
@@ -66,9 +55,11 @@ export default function SignUp() {
             async:false,
             success:function (res){
                 if(res.success){
+                    console.log('Account added!')
                     alert('Account add success')
                 }else {
                     //dispatch(clearAccount());
+                    console.log('Account add failed!')
                     alert(res.message);
                 }
             }
