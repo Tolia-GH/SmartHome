@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afcc4807-f207-4e36-ad66-530491e6a5f7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/ListUserHouseRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/requestDTO/HouseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/AddressService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/ListUserHouseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FillTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/FillTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/City.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/address/AddressJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/address/AddressJPA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/address/AddressRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/address/AddressRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/device/DeviceRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/device/DeviceRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/house/HouseJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/house/HouseJPA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/house/HouseRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/house/HouseRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/room/RoomRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/room/RoomRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/response/HouseResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/response/HouseResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/HouseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/HouseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/frontend/src/components/views/houses.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/frontend/src/components/views/houses.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SetTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/SetTable.sql" afterDir="false" />
-    </list>
+    <list default="true" id="afcc4807-f207-4e36-ad66-530491e6a5f7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

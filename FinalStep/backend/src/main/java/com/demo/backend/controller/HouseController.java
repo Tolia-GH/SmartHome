@@ -306,7 +306,7 @@ public class HouseController {
 
                     AddressJPA newAddress = new AddressJPA();
                     newAddress.setCountry(Country.valueOf(houseDTO.getCountry()));
-                    newAddress.setCity(City.CHENGDU);
+                    newAddress.setCity(City.valueOf(houseDTO.getCity()));
                     newAddress.setStreet(houseDTO.getStreet());
                     addressService.addAddress(newAddress);
 
