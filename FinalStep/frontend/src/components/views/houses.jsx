@@ -26,8 +26,9 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
+import $ from "jquery";
 
-// 假设数据是通过 API 请求获得的
+// 样例数据
 const exampleHouses = [
     {
         id: 1,
@@ -68,13 +69,59 @@ const exampleHouses = [
 ];
 
 export function Houses() {
-    const [houses, setHouses] = React.useState(exampleHouses);
+    const [houses, setHouses] = React.useState([]);
     const [openDialog, setOpenDialog] = React.useState(false);
     const [dialogType, setDialogType] = React.useState(""); // To differentiate between adding House/Room/Device
     const [newHouse, setNewHouse] = React.useState({ houseType: "", address: "" });
     const [newRoom, setNewRoom] = React.useState({ roomType: "", houseId: null });
-    const [newDevice, setNewDevice] = React.useState({ deviceType: "", roomId: null });
+    const [newDevice, setNewDevice] = React.useState({ deviceType: "", manufacture: "", roomId: null });
     const [snackBarOpen, setSnackBarOpen] = React.useState(false);
+
+    // 获取房屋数据的API
+    const fetchHouses = () => {
+        return $.ajax({
+            url: '/api/houses',
+            method: 'GET',
+            data: {
+                username: window.sessionStorage.getItem("username")
+            },
+        });
+    };
+
+// 添加房屋、房间、设备的API
+    const addHouseAPI = (house) => {
+        return $.ajax({
+            url: '/api/houses',
+            method: 'POST',
+            data: JSON.stringify(house),
+            contentType: 'application/json',
+        });
+    };
+
+    const addRoomAPI = (room) => {
+        return $.ajax({
+            url: `/api/houses/${room.houseId}/rooms`,
+            method: 'POST',
+            data: JSON.stringify(room),
+            contentType: 'application/json',
+        });
+    };
+
+    const addDeviceAPI = (device) => {
+        return $.ajax({
+            url: `/api/rooms/${device.roomId}/devices`,
+            method: 'POST',
+            data: JSON.stringify(device),
+            contentType: 'application/json',
+        });
+    };
+
+    // 获取房屋数据
+    React.useEffect(() => {
+        fetchHouses().then(data => {
+            setHouses(data);
+        });
+    }, []);
 
     const handleOpenDialog = (type, houseId = null, roomId = null) => {
         setDialogType(type);
@@ -83,7 +130,7 @@ export function Houses() {
         } else if (type === "room") {
             setNewRoom({ roomType: "", houseId });
         } else if (type === "device") {
-            setNewDevice({ deviceType: "", roomId });
+            setNewDevice({ deviceType: "", manufacture: "", roomId });
         }
         setOpenDialog(true);
     };
@@ -94,21 +141,74 @@ export function Houses() {
 
     const handleSave = () => {
         if (dialogType === "house") {
-            setHouses([...houses, { ...newHouse, id: houses.length + 1, rooms: [] }]);
+            addHouseAPI(newHouse).then((newHouseData) => {
+                setHouses([...houses, newHouseData]);
+            });
         } else if (dialogType === "room") {
+            addRoomAPI(newRoom).then((newRoomData) => {
+                const updatedHouses = houses.map((house) => {
+                    if (house.id === newRoom.houseId) {
+                        house.rooms.push(newRoomData);
+                    }
+                    return house;
+                });
+                setHouses(updatedHouses);
+            });
+        } else if (dialogType === "device") {
+            addDeviceAPI(newDevice).then((newDeviceData) => {
+                const updatedHouses = houses.map((house) => {
+                    if (house.id === newDevice.roomId) {
+                        const updatedRooms = house.rooms.map((room) => {
+                            if (room.id === newDevice.roomId) {
+                                room.devices.push(newDeviceData);
+                            }
+                            return room;
+                        });
+                        house.rooms = updatedRooms;
+                    }
+                    return house;
+                });
+                setHouses(updatedHouses);
+            });
+        }
+        setSnackBarOpen(true);
+        setOpenDialog(false);
+    };
+
+    const handleDeleteHouse = (houseId) => {
+        $.ajax({
+            url: `/api/houses/${houseId}`,
+            method: 'DELETE',
+        }).then(() => {
+            setHouses(houses.filter((house) => house.id !== houseId));
+        });
+    };
+
+    const handleDeleteRoom = (houseId, roomId) => {
+        $.ajax({
+            url: `/api/houses/${houseId}/rooms/${roomId}`,
+            method: 'DELETE',
+        }).then(() => {
             const updatedHouses = houses.map((house) => {
-                if (house.id === newRoom.houseId) {
-                    house.rooms.push({ ...newRoom, id: house.rooms.length + 1, devices: [] });
+                if (house.id === houseId) {
+                    house.rooms = house.rooms.filter((room) => room.id !== roomId);
                 }
                 return house;
             });
             setHouses(updatedHouses);
-        } else if (dialogType === "device") {
+        });
+    };
+
+    const handleDeleteDevice = (houseId, roomId, deviceId) => {
+        $.ajax({
+            url: `/api/rooms/${roomId}/devices/${deviceId}`,
+            method: 'DELETE',
+        }).then(() => {
             const updatedHouses = houses.map((house) => {
-                if (house.id === newDevice.roomId) {
+                if (house.id === houseId) {
                     const updatedRooms = house.rooms.map((room) => {
-                        if (room.id === newDevice.roomId) {
-                            room.devices.push(newDevice);
+                        if (room.id === roomId) {
+                            room.devices = room.devices.filter((device) => device.id !== deviceId);
                         }
                         return room;
                     });
@@ -117,39 +217,7 @@ export function Houses() {
                 return house;
             });
             setHouses(updatedHouses);
-        }
-        setSnackBarOpen(true);
-        setOpenDialog(false);
-    };
-
-    const handleDeleteHouse = (houseId) => {
-        setHouses(houses.filter((house) => house.id !== houseId));
-    };
-
-    const handleDeleteRoom = (houseId, roomId) => {
-        const updatedHouses = houses.map((house) => {
-            if (house.id === houseId) {
-                house.rooms = house.rooms.filter((room) => room.id !== roomId);
-            }
-            return house;
         });
-        setHouses(updatedHouses);
-    };
-
-    const handleDeleteDevice = (houseId, roomId, deviceId) => {
-        const updatedHouses = houses.map((house) => {
-            if (house.id === houseId) {
-                const updatedRooms = house.rooms.map((room) => {
-                    if (room.id === roomId) {
-                        room.devices = room.devices.filter((device) => device.id !== deviceId);
-                    }
-                    return room;
-                });
-                house.rooms = updatedRooms;
-            }
-            return house;
-        });
-        setHouses(updatedHouses);
     };
 
     return (
@@ -273,6 +341,7 @@ export function Houses() {
                             <FormControl fullWidth sx={{ mb: 2 }}>
                                 <InputLabel>Room Type</InputLabel>
                                 <Select
+                                    fullWidth
                                     value={newRoom.roomType}
                                     onChange={(e) => setNewRoom({ ...newRoom, roomType: e.target.value })}
                                 >
@@ -289,6 +358,7 @@ export function Houses() {
                             <FormControl fullWidth sx={{ mb: 2 }}>
                                 <InputLabel>Device Type</InputLabel>
                                 <Select
+                                    fullWidth
                                     value={newDevice.deviceType}
                                     onChange={(e) => setNewDevice({ ...newDevice, deviceType: e.target.value })}
                                 >
@@ -297,6 +367,13 @@ export function Houses() {
                                     <MenuItem value="FAN">Fan</MenuItem>
                                     <MenuItem value="CAMERA">Camera</MenuItem>
                                 </Select>
+                                <TextField
+                                    label="Manufacture"
+                                    fullWidth
+                                    value={newDevice.manufacture}
+                                    onChange={(e) => setNewDevice({ ...newDevice, manufacture: e.target.value })}
+                                    sx={{ mb: 2 }}
+                                />
                             </FormControl>
                         </>
                     )}

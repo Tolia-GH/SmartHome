@@ -2,10 +2,8 @@ package com.demo.backend.controller;
 
 import com.demo.backend.databaseJPA.account.UserJPA;
 import com.demo.backend.response.ProfileResponse;
-import com.demo.backend.security.PasswordSecurity;
 import com.demo.backend.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,7 +16,7 @@ public class ProfileController {
     @Autowired
     AccountService accountService;
 
-    public ProfileResponse setProfile(ProfileResponse profileResponse, UserJPA userJPA) {
+    public void setProfile(ProfileResponse profileResponse, UserJPA userJPA) {
 
         String firstName = userJPA.getUsername().split(" ")[0];
         String lastName = userJPA.getUsername().split(" ")[1];
@@ -31,7 +29,6 @@ public class ProfileController {
         profileResponse.setAge(userJPA.getAge());
         profileResponse.setGender(userJPA.getGender().toString());
 
-        return profileResponse;
     }
 
     @GetMapping("/profile")

@@ -32,7 +32,7 @@ create or replace function fill_issue() returns setof issue as $$
 DECLARE
     i int = 0;
 BEGIN
-    while i < 30000 loop
+    while i < 10 loop
             insert into issue(user_id, supporter_id, description, is_finished, issue_type) values (i%100000 + 1,i%1000 + 1,'test test', true,'BUGS');
             i = i + 1;
         end loop;
@@ -46,9 +46,9 @@ create or replace function fill_address() returns setof address as $$
 DECLARE
     i int = 0;
     countries country[] = array ['US','UK','RUSSIAN','CHINA','FRANCE'];
-    cities city[] = array ['Shanghai', 'Beijing', 'Shenzhen', 'Guangzhou', 'Chengdu','Paris', 'Marseille', 'Lyon', 'Toulouse','Cambridge', 'Edinburgh',  'London', 'Liverpool','New York', 'Los Angeles', 'Chicago', 'Boston'];
+    cities city[] = array ['Shanghai', 'Beijing', 'Shenzhen', 'Guangzhou', 'Chengdu','Paris', 'Marseille', 'Lyon', 'Toulouse','Cambridge', 'Edinburgh',  'London', 'Liverpool','NewYork', 'LosAngeles', 'Chicago', 'Boston'];
 BEGIN
-    while i < 1000000 loop
+    while i < 10 loop
             insert into address(country, city, street) VALUES (countries[i%5+1],cities[i%17+1],'xx streest');
             i = i + 1;
         end loop;
@@ -62,7 +62,7 @@ DECLARE
     i int = 0;
     houses house_type[] = array ['APARTMENTS', 'VILLAS', 'HIGH-END','ORDINARY'];
 BEGIN
-    while i < 1000000 loop
+    while i < 10 loop
             insert into house(address_id, house_type) VALUES (i+1,houses[i%4+1]);
             i = i + 1;
         end loop;

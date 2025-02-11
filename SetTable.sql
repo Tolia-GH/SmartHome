@@ -6,7 +6,7 @@ CREATE TYPE SENSOR_TYPE AS ENUM ('TEMPERATURE', 'HUMIDITY', 'SMOKE');
 CREATE TYPE ACTION_TYPE AS ENUM ('CLOSE','OPEN','SWITCH_OFF','SWITCH_ON','ADJUST_VALUE','TURN_ON','TURN_OFF');
 CREATE TYPE SCRIPT_TYPE AS ENUM ('CONDITIONAL','SCHEDULE');
 CREATE TYPE COUNTRY AS ENUM('US','UK','RUSSIAN','CHINA','FRANCE');
-CREATE TYPE CITY AS ENUM('Shanghai', 'Beijing', 'Shenzhen', 'Guangzhou', 'Chengdu','Paris', 'Marseille', 'Lyon', 'Toulouse','Cambridge', 'Edinburgh',  'London', 'Liverpool','New York', 'Los Angeles', 'Chicago', 'Boston');
+CREATE TYPE CITY AS ENUM('Shanghai', 'Beijing', 'Shenzhen', 'Guangzhou', 'Chengdu','Paris', 'Marseille', 'Lyon', 'Toulouse','Cambridge', 'Edinburgh',  'London', 'Liverpool','NewYork', 'LosAngeles', 'Chicago', 'Boston');
 CREATE TYPE ROOM_TYPE AS ENUM('KITCHEN','BEDROOM','BATHROOM','LIVING');
 CREATE TYPE GENDER AS ENUM ('MALE','FEMALE');
 
