@@ -1,21 +1,22 @@
 package com.demo.backend.controller;
 
+import com.demo.backend.databaseJPA.Enum.*;
 import com.demo.backend.databaseJPA.ListUserHouseJPA;
+import com.demo.backend.databaseJPA.ListUserHouseRepo;
 import com.demo.backend.databaseJPA.account.UserJPA;
+import com.demo.backend.databaseJPA.address.AddressJPA;
 import com.demo.backend.databaseJPA.device.DeviceJPA;
 import com.demo.backend.databaseJPA.house.HouseJPA;
 import com.demo.backend.databaseJPA.room.RoomJPA;
+import com.demo.backend.requestDTO.HouseDTO;
 import com.demo.backend.response.*;
-import com.demo.backend.service.AccountService;
+import com.demo.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -91,10 +92,19 @@ public class HouseController {
 //    }
 
     @Autowired
-    AccountService accountService;
+    private AccountService accountService;
+    @Autowired
+    private AddressService addressService;
+    @Autowired
+    private HouseService houseService;
+    @Autowired
+    private ListUserHouseRepo listUserHouseRepo;
+    @Autowired
+    private ListUserHouseService listUserHouseService;
 
     @GetMapping("/houses")
     public List<HouseResponse> getHouses(HttpServletRequest request) {
+
         HousesResponse housesResponse = new HousesResponse();
 
         if (request.getParameter("username") == null ||
@@ -133,7 +143,9 @@ public class HouseController {
 
                     houseResponse.setId(house.getId().longValue());
                     houseResponse.setHouseType(house.getHouseType().toString());
-                    houseResponse.setAddress(house.getAddressJPA().getCountry().toString() + ", " + house.getAddressJPA().getCity().toString() + ", " + house.getAddressJPA().getStreet());
+                    houseResponse.setCountry(house.getAddressJPA().getCountry().toString());
+                    houseResponse.setCity(house.getAddressJPA().getCity().toString());
+                    houseResponse.setStreet(house.getAddressJPA().getStreet());
 
                     List<RoomResponse> roomResponseList = new ArrayList<>();
                     for (RoomJPA room: house.getRoomJPAList()) {
@@ -189,8 +201,9 @@ public class HouseController {
 
                     houseResponse.setId(house.getId().longValue());
                     houseResponse.setHouseType(house.getHouseType().toString());
-                    houseResponse.setAddress(house.getAddressJPA().getCountry().toString() + ", " + house.getAddressJPA().getCountry().toString() + ", " + house.getAddressJPA().getStreet());
-
+                    houseResponse.setCountry(house.getAddressJPA().getCountry().toString());
+                    houseResponse.setCity(house.getAddressJPA().getCity().toString());
+                    houseResponse.setStreet(house.getAddressJPA().getStreet());
                     List<RoomResponse> roomResponseList = new ArrayList<>();
                     for (RoomJPA room: house.getRoomJPAList()) {
                         RoomResponse roomResponse = new RoomResponse();
@@ -232,6 +245,92 @@ public class HouseController {
         }
 
         return housesResponse.getHouseResponse();
+    }
+
+    @PostMapping("/houses")
+    public HousesResponse addHouse(@RequestBody HouseDTO houseDTO) {
+        HousesResponse housesResponse = new HousesResponse();
+
+        String username = houseDTO.getUsername();
+
+        String regexPhone = "\\+[1-9]+[0-9]*";
+        String regexEmail = ".*@.+\\.com";
+
+        if (username == null || username.isEmpty()) {
+            housesResponse.setSuccess(false);
+            housesResponse.setMessage("Username can't be empty!");
+            return housesResponse;
+        } else {
+
+            UserJPA userJPA;
+
+            if (Pattern.matches(regexPhone, username)) {
+                userJPA = accountService.findAccountByPhone(username);
+                if (userJPA != null) {
+                    housesResponse.setSuccess(true);
+                    housesResponse.setMessage("User found by phone number");
+
+                    HouseJPA newHouse = new HouseJPA();
+
+                    newHouse.setHouseType(HouseType.valueOf(houseDTO.getHouseType()));
+
+                    AddressJPA newAddress = new AddressJPA();
+
+                    newAddress.setCountry(Country.valueOf(houseDTO.getCountry()));
+                    newAddress.setCity(City.valueOf(houseDTO.getCity()));
+                    newAddress.setStreet(houseDTO.getStreet());
+
+                    newHouse.setAddressJPA(newAddress);
+
+                    addressService.addAddress(newAddress);
+                    houseService.addHouse(newHouse);
+
+                    ListUserHouseJPA listUserHouseJPA = new ListUserHouseJPA();
+
+                    listUserHouseJPA.setHouse(newHouse);
+                    listUserHouseJPA.setUser_id(userJPA.getId());
+
+                    listUserHouseService.addUserHouse(listUserHouseJPA);
+
+                } else {
+                    housesResponse.setSuccess(false);
+                    housesResponse.setMessage("User not found!");
+                }
+
+            } else if (Pattern.matches(regexEmail, username)) {
+                userJPA = accountService.findAccountByEmail(username);
+
+                if (userJPA != null) {
+                    housesResponse.setSuccess(true);
+                    housesResponse.setMessage("User found by phone number");
+
+                    AddressJPA newAddress = new AddressJPA();
+                    newAddress.setCountry(Country.valueOf(houseDTO.getCountry()));
+                    newAddress.setCity(City.CHENGDU);
+                    newAddress.setStreet(houseDTO.getStreet());
+                    addressService.addAddress(newAddress);
+
+                    HouseJPA newHouse = new HouseJPA();
+                    newHouse.setHouseType(HouseType.valueOf(houseDTO.getHouseType()));
+                    newHouse.setAddressJPA(newAddress);
+
+                    houseService.addHouse(newHouse);
+
+                    ListUserHouseJPA listUserHouseJPA = new ListUserHouseJPA();
+
+                    listUserHouseJPA.setHouse(newHouse);
+                    listUserHouseJPA.setUser_id(userJPA.getId());
+
+                    listUserHouseService.addUserHouse(listUserHouseJPA);
+
+                } else {
+                    housesResponse.setSuccess(false);
+                    housesResponse.setMessage("User not found!");
+                }
+            }
+        }
+
+        return new HousesResponse();
     }
 }
 

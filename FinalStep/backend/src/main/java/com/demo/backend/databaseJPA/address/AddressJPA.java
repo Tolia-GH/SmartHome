@@ -4,6 +4,7 @@ import com.demo.backend.databaseJPA.Enum.City;
 import com.demo.backend.databaseJPA.Enum.Country;
 import com.demo.backend.databaseJPA.Enum.PostgreSQLEnumType;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
@@ -17,11 +18,11 @@ public class AddressJPA {
     private Integer id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, name = "country")
+    @Type(type = "pgsql_enum")
     private Country country;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, name = "city")
+    @Type(type = "pgsql_enum")
     private City city;
 
     @Column(nullable = false, name = "street")

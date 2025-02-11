@@ -28,6 +28,16 @@ import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import $ from "jquery";
 
+// 假设枚举值已定义为常量
+const COUNTRIES = ["US", "UK", "RUSSIAN", "CHINA", "FRANCE"];
+const CITIES = {
+    US: ["NEW_YORK", "LOS_ANGELES", "CHICAGO", "BOSTON"],
+    UK: ["LONDON", "LIVERPOOL"],
+    RUSSIAN: ["MOSCOW"],
+    CHINA: ["SHANGHAI", "BEIJING", "SHENZHEN", "GUANGZHOU", "CHENGDU"],
+    FRANCE: ["PARIS", "MARSEILLE", "LYON", "TOULOUSE", "CAMBRIDGE", "EDINBURGH"]
+};
+
 // 样例数据
 const exampleHouses = [
     {
@@ -72,7 +82,7 @@ export function Houses() {
     const [houses, setHouses] = React.useState([]);
     const [openDialog, setOpenDialog] = React.useState(false);
     const [dialogType, setDialogType] = React.useState(""); // To differentiate between adding House/Room/Device
-    const [newHouse, setNewHouse] = React.useState({ houseType: "", address: "" });
+    const [newHouse, setNewHouse] = React.useState({ houseType: "", country: "", city: "", street: ""});
     const [newRoom, setNewRoom] = React.useState({ roomType: "", houseId: null });
     const [newDevice, setNewDevice] = React.useState({ deviceType: "", manufacture: "", roomId: null });
     const [snackBarOpen, setSnackBarOpen] = React.useState(false);
@@ -93,7 +103,13 @@ export function Houses() {
         return $.ajax({
             url: '/api/houses',
             method: 'POST',
-            data: JSON.stringify(house),
+            data: JSON.stringify( {
+                username: window.sessionStorage.getItem("username"),
+                houseType: house.houseType,
+                city: house.city,
+                country: house.country,
+                street: house.street
+            }),
             contentType: 'application/json',
         });
     };
@@ -141,34 +157,22 @@ export function Houses() {
 
     const handleSave = () => {
         if (dialogType === "house") {
-            addHouseAPI(newHouse).then((newHouseData) => {
-                setHouses([...houses, newHouseData]);
+            addHouseAPI(newHouse).then(() => {
+                fetchHouses().then((data) => {
+                    setHouses(data); // 更新房屋数据
+                });
             });
         } else if (dialogType === "room") {
-            addRoomAPI(newRoom).then((newRoomData) => {
-                const updatedHouses = houses.map((house) => {
-                    if (house.id === newRoom.houseId) {
-                        house.rooms.push(newRoomData);
-                    }
-                    return house;
+            addRoomAPI(newRoom).then(() => {
+                fetchHouses().then((data) => {
+                    setHouses(data); // 更新房屋数据
                 });
-                setHouses(updatedHouses);
             });
         } else if (dialogType === "device") {
-            addDeviceAPI(newDevice).then((newDeviceData) => {
-                const updatedHouses = houses.map((house) => {
-                    if (house.id === newDevice.roomId) {
-                        const updatedRooms = house.rooms.map((room) => {
-                            if (room.id === newDevice.roomId) {
-                                room.devices.push(newDeviceData);
-                            }
-                            return room;
-                        });
-                        house.rooms = updatedRooms;
-                    }
-                    return house;
+            addDeviceAPI(newDevice).then(() => {
+                fetchHouses().then((data) => {
+                    setHouses(data); // 更新房屋数据
                 });
-                setHouses(updatedHouses);
             });
         }
         setSnackBarOpen(true);
@@ -220,6 +224,23 @@ export function Houses() {
         });
     };
 
+    const handleCountryChange = (e) => {
+        const selectedCountry = e.target.value;
+        setNewHouse({
+            ...newHouse,
+            country: selectedCountry,
+            city: "" // Reset city when country changes
+        });
+    };
+
+    const handleCityChange = (e) => {
+        setNewHouse({ ...newHouse, city: e.target.value });
+    };
+
+    const handleStreetChange = (e) => {
+        setNewHouse({ ...newHouse, street: e.target.value });
+    };
+
     return (
         <Container maxWidth="lg" xs={12} md={12} lg={6} sx={{ mt: 4, mb: 4 }}>
             <Button //添加房屋按钮
@@ -236,7 +257,7 @@ export function Houses() {
                     <Grid item xs={12} md={12} lg={6} key={house.id}>
                         <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
                             <Typography variant="h6" gutterBottom>
-                                {house.houseType} - {house.address}
+                                {house.houseType} - {house.country}, {house.city}, {house.street}
                             </Typography>
                             <Button
                                 variant="contained"
@@ -247,58 +268,63 @@ export function Houses() {
                             >
                                 Add Room
                             </Button>
-                            {house.rooms.map((room) => ( //房间信息
-                                <Box key={room.id} sx={{ mb: 2 }}>
-                                    <Typography variant="h6" gutterBottom>
-                                        {room.roomType}
-                                    </Typography>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        sx={{ mb: 2 }}
-                                        onClick={() => handleOpenDialog("device", house.id, room.id)}
-                                        startIcon={<AddIcon />}
-                                    >
-                                        Add Device
-                                    </Button>
-                                    <Button
-                                        variant="contained"
-                                        color="secondary"
-                                        sx={{ mb: 2 }}
-                                        onClick={() => handleDeleteRoom(house.id, room.id)}
-                                        startIcon={<DeleteIcon />}
-                                    >
-                                        Delete Room
-                                    </Button>
-                                    <Table sx={{ minWidth: 320 }}>
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Device Type</TableCell>
-                                                <TableCell>Manufacture</TableCell>
-                                                <TableCell>Available</TableCell>
-                                                <TableCell>Actions</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {room.devices.map((device) => ( //设备信息
-                                                <TableRow key={device.id}>
-                                                    <TableCell>{device.deviceType}</TableCell>
-                                                    <TableCell>{device.manufacture}</TableCell>
-                                                    <TableCell>{device.available ? "Yes" : "No"}</TableCell>
-                                                    <TableCell>
-                                                        <IconButton
-                                                            color="secondary"
-                                                            onClick={() => handleDeleteDevice(house.id, room.id, device.id)}
-                                                        >
-                                                            <DeleteIcon />
-                                                        </IconButton>
-                                                    </TableCell>
-                                                </TableRow>
-                                            ))}
-                                        </TableBody>
-                                    </Table>
-                                </Box>
-                            ))}
+                            {house.rooms && house.rooms.length > 0? (
+                                house.rooms.map((room) => ( //房间信息
+                                        <Box key={room.id} sx={{ mb: 2 }}>
+                                            <Typography variant="h6" gutterBottom>
+                                                {room.roomType}
+                                            </Typography>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                sx={{ mb: 2 }}
+                                                onClick={() => handleOpenDialog("device", house.id, room.id)}
+                                                startIcon={<AddIcon />}
+                                            >
+                                                Add Device
+                                            </Button>
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                sx={{ mb: 2 }}
+                                                onClick={() => handleDeleteRoom(house.id, room.id)}
+                                                startIcon={<DeleteIcon />}
+                                            >
+                                                Delete Room
+                                            </Button>
+                                            <Table sx={{ minWidth: 320 }}>
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell>Device Type</TableCell>
+                                                        <TableCell>Manufacture</TableCell>
+                                                        <TableCell>Available</TableCell>
+                                                        <TableCell>Actions</TableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    {room.devices.map((device) => ( //设备信息
+                                                        <TableRow key={device.id}>
+                                                            <TableCell>{device.deviceType}</TableCell>
+                                                            <TableCell>{device.manufacture}</TableCell>
+                                                            <TableCell>{device.available ? "Yes" : "No"}</TableCell>
+                                                            <TableCell>
+                                                                <IconButton
+                                                                    color="secondary"
+                                                                    onClick={() => handleDeleteDevice(house.id, room.id, device.id)}
+                                                                >
+                                                                    <DeleteIcon />
+                                                                </IconButton>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </Box>
+                                    ))
+                            ) : (
+                                <Typography>No rooms available</Typography>
+                            )}
+
                             <Button
                                 variant="contained"
                                 color="secondary"
@@ -320,29 +346,63 @@ export function Houses() {
                 <DialogContent>
                     {dialogType === "house" && (
                         <>
+                            <FormControl fullWidth sx={{ mb: 0 }}>
+                                <InputLabel>House Type</InputLabel>
+                                <Select
+                                    value={newHouse.houseType}
+                                    fullWidth={true}
+                                    onChange={(e) => setNewHouse({ ...newHouse, houseType: e.target.value })}
+                                >
+                                    <MenuItem value="APARTMENTS">Apartment</MenuItem>
+                                    <MenuItem value="VILLAS">Villas</MenuItem>
+                                    <MenuItem value="HIGH_END">High End</MenuItem>
+                                    <MenuItem value="ORDINARY">Ordinary</MenuItem>
+                                </Select>
+                                </FormControl>
+                            <FormControl fullWidth sx={{ mb: 0 }}>
+                                <InputLabel>Country</InputLabel>
+                                <Select
+                                    value={newHouse.country}
+                                    onChange={(e) => setNewHouse({ ...newHouse, country: e.target.value })}
+                                >
+                                    {COUNTRIES.map((country) => (
+                                        <MenuItem key={country} value={country}>
+                                            {country}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                                </FormControl>
+                            <FormControl fullWidth sx={{ mb: 0 }}>
+                                <InputLabel>City</InputLabel>
+                                <Select
+                                    value={newHouse.city}
+                                    onChange={(e) => setNewHouse({ ...newHouse, city: e.target.value })}
+                                    disabled={!newHouse.country}
+                                >
+                                    {newHouse.country &&
+                                        CITIES[newHouse.country].map((city) => (
+                                            <MenuItem key={city} value={city}>
+                                                {city}
+                                            </MenuItem>
+                                        ))}
+                                </Select>
+                            </FormControl>
                             <TextField
-                                label="House Type"
+                                label="Street"
                                 fullWidth
-                                value={newHouse.houseType}
-                                onChange={(e) => setNewHouse({ ...newHouse, houseType: e.target.value })}
-                                sx={{ mb: 2 }}
-                            />
-                            <TextField
-                                label="Address"
-                                fullWidth
-                                value={newHouse.address}
-                                onChange={(e) => setNewHouse({ ...newHouse, address: e.target.value })}
+                                value={newHouse.street}
+                                onChange={(e) => setNewHouse({ ...newHouse, street: e.target.value })} // 处理街道的输入
                                 sx={{ mb: 2 }}
                             />
                         </>
                     )}
                     {dialogType === "room" && (
                         <>
-                            <FormControl fullWidth sx={{ mb: 2 }}>
+                            <FormControl fullWidth sx={{ mb: 0 }}>
                                 <InputLabel>Room Type</InputLabel>
                                 <Select
-                                    fullWidth
                                     value={newRoom.roomType}
+                                    fullWidth={true}
                                     onChange={(e) => setNewRoom({ ...newRoom, roomType: e.target.value })}
                                 >
                                     <MenuItem value="KITCHEN">Kitchen</MenuItem>
@@ -355,11 +415,11 @@ export function Houses() {
                     )}
                     {dialogType === "device" && (
                         <>
-                            <FormControl fullWidth sx={{ mb: 2 }}>
+                            <FormControl fullWidth sx={{ mb: 0 }}>
                                 <InputLabel>Device Type</InputLabel>
                                 <Select
-                                    fullWidth
                                     value={newDevice.deviceType}
+                                    fullWidth={true}
                                     onChange={(e) => setNewDevice({ ...newDevice, deviceType: e.target.value })}
                                 >
                                     <MenuItem value="AIR_CONDITION">Air Condition</MenuItem>

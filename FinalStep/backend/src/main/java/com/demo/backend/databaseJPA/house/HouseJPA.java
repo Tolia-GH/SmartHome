@@ -6,6 +6,7 @@ import com.demo.backend.databaseJPA.account.UserJPA;
 import com.demo.backend.databaseJPA.address.AddressJPA;
 import com.demo.backend.databaseJPA.room.RoomJPA;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,7 +24,7 @@ public class HouseJPA {
     private AddressJPA addressJPA;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "house_type", nullable = false)
+    @Type(type = "pgsql_enum")
     private HouseType houseType;
 
     @OneToMany

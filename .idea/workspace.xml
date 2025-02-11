@@ -5,46 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afcc4807-f207-4e36-ad66-530491e6a5f7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/ActionType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/City.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/Country.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/DeviceType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/HouseType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/ProblemType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/RoomType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/ScriptType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/SensorType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/ListUserHouseJPA.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/address/AddressJPA.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/address/AddressRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/device/DeviceJPA.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/device/DeviceRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/house/HouseJPA.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/house/HouseRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/issue/IssueJPA.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/issue/IssueRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/room/RoomJPA.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/room/RoomRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/sensor/SensorJPA.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/sensor/SensorRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/supporter/SupporterJPA.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/supporter/SupporterRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/response/DeviceResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/response/HouseResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/response/HousesResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/response/RoomResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/HouseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/ListUserHouseRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/requestDTO/HouseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/AddressService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/ListUserHouseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FillTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/FillTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/account/UserJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/account/UserJPA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/Enum/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/address/AddressJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/address/AddressJPA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/address/AddressRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/address/AddressRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/device/DeviceRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/device/DeviceRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/house/HouseJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/house/HouseJPA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/house/HouseRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/house/HouseRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/room/RoomRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/room/RoomRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/response/HouseResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/response/HouseResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/HouseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/HouseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinalStep/frontend/src/components/views/houses.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/frontend/src/components/views/houses.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SetTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/SetTable.sql" afterDir="false" />
     </list>
@@ -281,38 +262,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java</url>
-          <line>164</line>
+          <line>176</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java</url>
-          <line>89</line>
+          <line>90</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java</url>
-          <line>83</line>
+          <line>84</line>
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java</url>
-          <line>97</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java</url>
-          <line>219</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java</url>
-          <line>214</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java</url>
-          <line>194</line>
-          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

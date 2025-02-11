@@ -46,7 +46,7 @@ create or replace function fill_address() returns setof address as $$
 DECLARE
     i int = 0;
     countries country[] = array ['US','UK','RUSSIAN','CHINA','FRANCE'];
-    cities city[] = array ['Shanghai', 'Beijing', 'Shenzhen', 'Guangzhou', 'Chengdu','Paris', 'Marseille', 'Lyon', 'Toulouse','Cambridge', 'Edinburgh',  'London', 'Liverpool','NewYork', 'LosAngeles', 'Chicago', 'Boston'];
+    cities city[] = array ['SHANGHAI', 'BEIJING', 'SHENZHEN', 'GUANGZHOU', 'CHENGDU','PARIS', 'MARSEILLE', 'LYON', 'TOULOUSE','CAMBRIDGE', 'EDINBURGH',  'LONDON', 'LIVERPOOL','NEW_YORK', 'LOS_ANGELES', 'CHICAGO', 'BOSTON'];
 BEGIN
     while i < 10 loop
             insert into address(country, city, street) VALUES (countries[i%5+1],cities[i%17+1],'xx streest');
@@ -60,7 +60,7 @@ select fill_address();
 create or replace function fill_house() returns setof address as $$
 DECLARE
     i int = 0;
-    houses house_type[] = array ['APARTMENTS', 'VILLAS', 'HIGH-END','ORDINARY'];
+    houses house_type[] = array ['APARTMENTS', 'VILLAS', 'HIGH_END','ORDINARY'];
 BEGIN
     while i < 10 loop
             insert into house(address_id, house_type) VALUES (i+1,houses[i%4+1]);
