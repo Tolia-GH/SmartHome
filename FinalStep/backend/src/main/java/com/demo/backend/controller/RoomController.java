@@ -12,6 +12,7 @@ import com.demo.backend.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -83,6 +84,54 @@ public class RoomController {
             }
         }
         return dashboardResponse;
+    }
+
+    @DeleteMapping("/houses/{houseId}/rooms/{roomId}")
+    public DashboardResponse delete(HttpServletRequest request, @PathVariable int houseId, @PathVariable int roomId) {
+        DashboardResponse dashboardResponse = new DashboardResponse();
+
+        String username = request.getParameter("username");
+
+        String regexPhone = "\\+[1-9]+[0-9]*";
+        String regexEmail = ".*@.+\\.com";
+
+        UserJPA userJPA;
+
+        if (username == null || username.isEmpty()) {
+            dashboardResponse.setSuccess(false);
+            dashboardResponse.setMessage("Username can't be empty!");
+            return dashboardResponse;
+        } else {
+            if (Pattern.matches(regexPhone, username)) {
+                userJPA = accountService.findAccountByPhone(username);
+                if (userJPA != null) {
+                    dashboardResponse.setSuccess(true);
+                    dashboardResponse.setMessage("User found by phone number");
+
+                    RoomJPA roomJPA = roomService.findRoomById(roomId);
+                    roomService.delete(roomJPA);
+                } else {
+                    dashboardResponse.setSuccess(false);
+                    dashboardResponse.setMessage("User not found!");
+                }
+
+            } else if (Pattern.matches(regexEmail, username)) {
+                userJPA = accountService.findAccountByEmail(username);
+
+                if (userJPA != null) {
+                    dashboardResponse.setSuccess(true);
+                    dashboardResponse.setMessage("User found by phone number");
+
+                    RoomJPA roomJPA = roomService.findRoomById(roomId);
+                    roomService.delete(roomJPA);
+
+                } else {
+                    dashboardResponse.setSuccess(false);
+                    dashboardResponse.setMessage("User not found!");
+                }
+            }
+        }
+        return new DashboardResponse();
     }
 
 //    @PostMapping("/")

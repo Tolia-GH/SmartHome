@@ -14,4 +14,12 @@ public class RoomService {
     public void add(RoomJPA roomJPA) {
         roomRepo.save(roomJPA);
     }
+
+    public RoomJPA findRoomById(Integer room_id) {
+        return roomRepo.findById(room_id).orElse(null);
+    }
+
+    public void delete(RoomJPA roomJPA) {
+        roomRepo.delete(roomJPA);
+    }
 }
