@@ -27,6 +27,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import $ from "jquery";
+import {useState} from "react";
 
 // 假设枚举值已定义为常量
 const COUNTRIES = ["US", "UK", "RUSSIAN", "CHINA", "FRANCE"];
@@ -85,7 +86,10 @@ export function Houses() {
     const [newHouse, setNewHouse] = React.useState({ houseType: "", country: "", city: "", street: ""});
     const [newRoom, setNewRoom] = React.useState({ houseId: null, area_size: 0, height: 0, roomType: "", isFilled: false});
     const [newDevice, setNewDevice] = React.useState({ roomId: null, manufacture: "", available: false, deviceType: ""  });
+
     const [snackBarOpen, setSnackBarOpen] = React.useState(false);
+    const [snackBarMessage, setSnackBarMessage] = React.useState('');
+    const [severity, setSeverity] = useState('success'); // Default to success
 
     // 获取房屋数据的API
     const fetchHouses = () => {
@@ -167,28 +171,69 @@ export function Houses() {
     };
 
     const handleSave = () => {
+        let isValid = true;
+        let errorMessage = '';
+
+        if (dialogType === "house") {
+            // 验证 House 表单
+            if (!newHouse.houseType || !newHouse.country || !newHouse.city || !newHouse.street) {
+                isValid = false;
+                errorMessage = 'Please fill in all required fields for House.';
+            }
+        } else if (dialogType === "room") {
+            // 验证 Room 表单
+            if (!newRoom.roomType || !newRoom.areaSize || !newRoom.height || newRoom.isFilled === undefined) {
+                isValid = false;
+                errorMessage = 'Please fill in all required fields for Room.';
+            }
+        } else if (dialogType === "device") {
+            // 验证 Device 表单
+            if (!newDevice.deviceType || !newDevice.manufacture || newDevice.available === undefined) {
+                isValid = false;
+                errorMessage = 'Please fill in all required fields for Device.';
+            }
+        }
+
+        // 如果表单无效，则显示错误信息
+        if (!isValid) {
+            setSnackBarOpen(true);
+            setSeverity('error')
+            setSnackBarMessage(errorMessage)  // 这里你可以使用Snackbar或其他方式显示错误信息
+            return;  // 终止函数执行
+        }
+
+        // 表单验证通过，进行API调用
         if (dialogType === "house") {
             addHouseAPI(newHouse).then(() => {
+                setSnackBarOpen(true);
+                setSeverity('success')
+                setSnackBarMessage("House Added!")
                 fetchHouses().then((data) => {
                     setHouses(data); // 更新房屋数据
                 });
             });
         } else if (dialogType === "room") {
             addRoomAPI(newRoom).then(() => {
+                setSnackBarOpen(true);
+                setSeverity('success')
+                setSnackBarMessage("Room Added!")
                 fetchHouses().then((data) => {
                     setHouses(data); // 更新房屋数据
                 });
             });
         } else if (dialogType === "device") {
             addDeviceAPI(newDevice).then(() => {
+                setSnackBarOpen(true);
+                setSeverity('success');
+                setSnackBarMessage("Device Added!")
                 fetchHouses().then((data) => {
                     setHouses(data); // 更新房屋数据
                 });
             });
         }
-        setSnackBarOpen(true);
         setOpenDialog(false);
     };
+
 
     const handleDeleteHouse = (houseId) => {
         $.ajax({
@@ -446,10 +491,8 @@ export function Houses() {
                         </>
                     )}
                     {dialogType === "device" && (
-
                         <>
-
-                            <FormControl fullWidth sx={{ mb: 0 }}>
+                            <FormControl fullWidth sx={{ mb: 2 }}>
                                 <InputLabel>Device Type</InputLabel>
                                 <Select
                                     value={newDevice.deviceType}
@@ -493,14 +536,14 @@ export function Houses() {
                 </DialogActions>
             </Dialog>
 
-            {/* Snackbar for confirmation */}
+            {/* Snackbar for information */}
             <Snackbar
                 open={snackBarOpen}
                 autoHideDuration={3000}
                 onClose={() => setSnackBarOpen(false)}
             >
-                <Alert onClose={() => setSnackBarOpen(false)} severity="success">
-                    {dialogType === "house" ? "House added!" : dialogType === "room" ? "Room added!" : "Device added!"}
+                <Alert onClose={() => setSnackBarOpen(false)} severity={severity}>
+                    {snackBarMessage}
                 </Alert>
             </Snackbar>
         </Container>
