@@ -1,70 +1,65 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import $ from 'jquery';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import React, { useState } from 'react';
+import { TextField, Grid, Box, Avatar, Typography, Container, FormControl, InputLabel, Select, MenuItem, Button, CssBaseline } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import {FormControl, InputLabel, Select} from "@mui/material";
-import {useState} from "react";
-import {Copyright} from "../Copyright";
-
-
+import $ from 'jquery';
+import { Copyright } from '../Copyright';
 
 export default function SignUp() {
-
-
     const [state, setState] = useState({
         age: 0,
-        gender: '?',
+        gender: null,
         firstName: '?',
         lastName: '?',
         country: 'RUSSIA',
         city: 'Moscow',
         street: '?',
-        phone:'?',
-        email:'?',
-        password:'',
-    })
+        phone: '',
+        email: '?',
+        password: '',
+        phoneCode: null, // Default phone code for Russia
+    });
 
     const handleChange = (event) => {
-        const name = event.target.name;
-        setState({
-            ...state,
-            [name]: event.target.value,
-        });
+        const { name, value } = event.target;
+        setState((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
     };
 
-    function sendAccount(firstName, lastName, password, age, phone, email, gender) {
+    function sendAccount(firstName, lastName, password, age, phoneCode, phone, email, gender) {
         $.ajax({
-            url: "api/signUp",
-            method:"POST",
-            data:{
-                password: password,
-                firstName: firstName,
-                lastName: lastName,
-                gender: gender,
-                age: age,
-                phone: phone,
-                email: email,
+            url: 'api/signUp',
+            method: 'POST',
+            data: {
+                password,
+                firstName,
+                lastName,
+                gender,
+                age,
+                phone: phoneCode + phone,
+                email,
             },
-            async:false,
-            success:function (res){
-                if(res.success){
-                    console.log('Account added!')
-                    alert('Account add success')
-                }else {
-                    //dispatch(clearAccount());
-                    console.log('Account add failed!')
+            success: (res) => {
+                if (res.success) {
+                    console.log('Account added!');
+                    alert('Account add success');
+                } else {
+                    console.log('Account add failed!');
                     alert(res.message);
                 }
-            }
+            },
+            error: (err) => {
+                console.log('Request failed', err);
+                alert('There was an error processing your request.');
+            },
         });
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault(); // Prevent the default form submission
+        sendAccount(state.firstName, state.lastName, state.password, state.age, state.phoneCode, state.phone, state.email, state.gender);
+    };
 
     return (
         <Container component="main" maxWidth="xs">
@@ -83,7 +78,7 @@ export default function SignUp() {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
-                <Box component="form" noValidate sx={{ mt: 3 }}>
+                <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -120,15 +115,38 @@ export default function SignUp() {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="phone"
-                                label="Phone Number"
-                                name="phone"
-                                autoComplete="phone"
-                                onChange={handleChange}
-                            />
+                            <Grid container spacing={1} alignItems="center">
+                                <Grid item xs={4}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="phoneCodeLabel">Phone Code</InputLabel>
+                                        <Select
+                                            value={state.phoneCode}
+                                            inputProps={{
+                                                name: 'phoneCode',
+                                                id: 'phoneCode-native-simple',
+                                            }}
+                                            labelId="phoneCodeLabel"
+                                            id="phoneCode"
+                                            onChange={handleChange}
+                                        >
+                                            <MenuItem value="+7">+7 (RU)</MenuItem>
+                                            <MenuItem value="+1">+1 (USA)</MenuItem>
+                                            <MenuItem value="+44">+44 (UK)</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={8}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id="phone"
+                                        label="Phone Number"
+                                        name="phone"
+                                        autoComplete="phone"
+                                        onChange={handleChange}
+                                    />
+                                </Grid>
+                            </Grid>
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
@@ -155,40 +173,28 @@ export default function SignUp() {
                         </Grid>
                         <Grid item xs={12}>
                             <FormControl fullWidth>
-                                <InputLabel id="genderLabel">Gender</InputLabel>
+                                <InputLabel>Gender</InputLabel>
                                 <Select
-                                    native
                                     value={state.gender}
-                                    inputProps={{
-                                        name: 'gender',
-                                        id: 'gender-native-simple',
-                                    }}
-                                    labelId="genderLabel"
-                                    id="gedner"
-                                    label="Gender"
-                                    onChange={handleChange}
+                                    fullWidth={true}
+                                    onChange={(e) => setState({...state, gender: e.target.value})}
                                 >
-                                    <option value="MALE">Male</option>
-                                    <option value="FEMALE">Female</option>
+                                    <MenuItem value="MALE">Male</MenuItem>
+                                    <MenuItem value="FEMALE">Female</MenuItem>
                                 </Select>
                             </FormControl>
                         </Grid>
-
                     </Grid>
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
-                        onClick={() => {
-                            alert(state.firstName + " " + state.lastName + "\n" + state.password + "\n" + state.age + "\n" + state.email + "\n" + state.phone + "\n" + state.gender)
-                            sendAccount(state.firstName,state.lastName,state.password,state.age,state.phone,state.email,state.gender)}
-                        }
                     >
                         Sign Up
                     </Button>
                     <Button
-                        type="submit"
+                        type="button"
                         href="/"
                         fullWidth
                         variant="outlined"
