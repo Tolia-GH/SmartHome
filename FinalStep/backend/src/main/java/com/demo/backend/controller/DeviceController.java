@@ -85,8 +85,8 @@ public class DeviceController {
         return dashboardResponse;
     }
 
-    @DeleteMapping("/houses/{houseId}/rooms/{roomId}/devices/{device_id}")
-    public DashboardResponse delete(HttpServletRequest request, @PathVariable int houseId, @PathVariable int roomId) {
+    @DeleteMapping("rooms/{room_id}/devices/{device_id}")
+    public DashboardResponse deleteDevice(HttpServletRequest request, @PathVariable int room_id, @PathVariable int device_id) {
         DashboardResponse dashboardResponse = new DashboardResponse();
 
         String username = request.getParameter("username");
@@ -107,8 +107,8 @@ public class DeviceController {
                     dashboardResponse.setSuccess(true);
                     dashboardResponse.setMessage("User found by phone number");
 
-                    RoomJPA roomJPA = roomService.findRoomById(roomId);
-                    roomService.delete(roomJPA);
+                    DeviceJPA deviceJPA = deviceService.findRoomById(device_id);
+                    deviceService.delete(deviceJPA);
                 } else {
                     dashboardResponse.setSuccess(false);
                     dashboardResponse.setMessage("User not found!");
@@ -121,9 +121,8 @@ public class DeviceController {
                     dashboardResponse.setSuccess(true);
                     dashboardResponse.setMessage("User found by phone number");
 
-                    RoomJPA roomJPA = roomService.findRoomById(roomId);
-                    roomService.delete(roomJPA);
-
+                    DeviceJPA deviceJPA = deviceService.findRoomById(device_id);
+                    deviceService.delete(deviceJPA);
                 } else {
                     dashboardResponse.setSuccess(false);
                     dashboardResponse.setMessage("User not found!");

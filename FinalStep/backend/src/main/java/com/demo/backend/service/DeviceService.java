@@ -12,4 +12,12 @@ public class DeviceService {
     public void add(DeviceJPA deviceJPA) {
         deviceRepo.save(deviceJPA);
     }
+
+    public DeviceJPA findRoomById(int deviceId) {
+        return deviceRepo.findById(deviceId).orElse(null);
+    }
+
+    public void delete(DeviceJPA deviceJPA) {
+        deviceRepo.delete(deviceJPA);
+    }
 }
