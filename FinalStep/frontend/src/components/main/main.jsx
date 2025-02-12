@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -19,23 +18,11 @@ import { Profile } from "../views/profile";
 import { Family } from "../views/family";
 import { Houses } from "../views/houses";
 import { Issues } from "../views/issues";
-
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                My Smart Home
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import {Copyright} from "../Copyright";
 
 const drawerWidth = 240;
 
-const AppBar = styled(MuiAppBar, {
+const AppBar = styled(MuiAppBar, {//应用栏动画
     shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
     zIndex: theme.zIndex.drawer + 1,
@@ -54,7 +41,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
+    ({ theme, open }) => ({ //导航栏动画
         '& .MuiDrawer-paper': {
             position: 'relative',
             whiteSpace: 'nowrap',
@@ -85,15 +72,15 @@ export default function Main() {
     const [open, setOpen] = React.useState(true);
     const [selectedItem, setSelectedItem] = React.useState('My Profile');
 
-    const toggleDrawer = () => {
+    const toggleDrawer = () => {//处理导航栏的展开和收起
         setOpen(!open);
     };
 
-    const handleListItemClick = (text) => {
+    const handleListItemClick = (text) => {//处理导航栏选择事件
         setSelectedItem(text);
     };
 
-    const renderContent = () => {
+    const renderContent = () => { //根据导航栏内容渲染 views 页面组件
         switch (selectedItem) {
             case 'My Profile':
                 return <Profile />;
@@ -113,6 +100,7 @@ export default function Main() {
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
                 <AppBar position="absolute" open={open}>
+                    {/*应用栏组件*/}
                     <Toolbar sx={{ pr: '24px' }}>
                         <IconButton
                             edge="start"
@@ -143,6 +131,7 @@ export default function Main() {
                     </Toolbar>
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
+                    {/*导航栏组件*/}
                     <Toolbar
                         sx={{
                             display: 'flex',
@@ -175,7 +164,10 @@ export default function Main() {
                     }}
                 >
                     <Toolbar />
+
+                    {/*根据导航栏动态切换的内容组件*/}
                     {renderContent()}
+
                     <Copyright />
                 </Box>
             </Box>
