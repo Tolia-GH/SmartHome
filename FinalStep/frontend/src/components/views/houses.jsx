@@ -84,7 +84,7 @@ export function Houses() {
     const [dialogType, setDialogType] = React.useState(""); // To differentiate between adding House/Room/Device
     const [newHouse, setNewHouse] = React.useState({ houseType: "", country: "", city: "", street: ""});
     const [newRoom, setNewRoom] = React.useState({ houseId: null, area_size: 0, height: 0, roomType: "", isFilled: false});
-    const [newDevice, setNewDevice] = React.useState({ deviceType: "", manufacture: "", roomId: null });
+    const [newDevice, setNewDevice] = React.useState({ roomId: null, manufacture: "", available: false, deviceType: ""  });
     const [snackBarOpen, setSnackBarOpen] = React.useState(false);
 
     // 获取房屋数据的API
@@ -133,7 +133,12 @@ export function Houses() {
         return $.ajax({
             url: `/api/rooms/${device.roomId}/devices`,
             method: 'POST',
-            data: JSON.stringify(device),
+            data: JSON.stringify({
+                username: window.sessionStorage.getItem("username"),
+                manufacture: device.manufacture,
+                available: device.available,
+                device_type: device.deviceType
+            }),
             contentType: 'application/json',
         });
     };
@@ -148,11 +153,11 @@ export function Houses() {
     const handleOpenDialog = (type, houseId = null, roomId = null) => {
         setDialogType(type);
         if (type === "house") {
-            setNewHouse({ houseType: "", address: "" });
+            setNewHouse({ houseType: "" });
         } else if (type === "room") {
             setNewRoom({ roomType: "", houseId });
         } else if (type === "device") {
-            setNewDevice({ deviceType: "", manufacture: "", roomId });
+            setNewDevice({ deviceType: "", roomId });
         }
         setOpenDialog(true);
     };
@@ -441,7 +446,9 @@ export function Houses() {
                         </>
                     )}
                     {dialogType === "device" && (
+
                         <>
+
                             <FormControl fullWidth sx={{ mb: 0 }}>
                                 <InputLabel>Device Type</InputLabel>
                                 <Select
@@ -454,13 +461,24 @@ export function Houses() {
                                     <MenuItem value="FAN">Fan</MenuItem>
                                     <MenuItem value="CAMERA">Camera</MenuItem>
                                 </Select>
-                                <TextField
-                                    label="Manufacture"
-                                    fullWidth
-                                    value={newDevice.manufacture}
-                                    onChange={(e) => setNewDevice({ ...newDevice, manufacture: e.target.value })}
-                                    sx={{ mb: 2 }}
-                                />
+                            </FormControl>
+                            <TextField
+                                label="Manufacture"
+                                fullWidth
+                                value={newDevice.manufacture}
+                                onChange={(e) => setNewDevice({ ...newDevice, manufacture: e.target.value })}
+                                sx={{ mb: 2 }}
+                            />
+
+                            <FormControl fullWidth sx={{ mb: 2 }}>
+                                <InputLabel>Available</InputLabel>
+                                <Select
+                                    value={newDevice.available}
+                                    onChange={(e) => setNewDevice({ ...newDevice, available: e.target.value})}
+                                >
+                                    <MenuItem value={true}>Yes</MenuItem>
+                                    <MenuItem value={false}>No</MenuItem>
+                                </Select>
                             </FormControl>
                         </>
                     )}

@@ -26,8 +26,7 @@ public class HouseJPA {
     @Type(type = "pgsql_enum")
     private HouseType houseType;
 
-    @OneToMany
-    @JoinColumn(name = "house_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "house_id", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RoomJPA> roomJPAList;
 
     @OneToMany
