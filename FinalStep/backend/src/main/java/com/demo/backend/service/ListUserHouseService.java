@@ -14,4 +14,8 @@ public class ListUserHouseService {
     public void addUserHouse(ListUserHouseJPA newUserHouse) {
         listUserHouseRepo.save(newUserHouse);
     }
+
+    public void delete(ListUserHouseJPA listUserHouseJPA) {
+        listUserHouseRepo.delete(listUserHouseJPA);
+    }
 }

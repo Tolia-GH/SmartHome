@@ -2,7 +2,6 @@ package com.demo.backend.databaseJPA.house;
 
 import com.demo.backend.databaseJPA.Enum.HouseType;
 import com.demo.backend.databaseJPA.ListUserHouseJPA;
-import com.demo.backend.databaseJPA.account.UserJPA;
 import com.demo.backend.databaseJPA.address.AddressJPA;
 import com.demo.backend.databaseJPA.room.RoomJPA;
 import lombok.Data;
@@ -30,6 +29,10 @@ public class HouseJPA {
     @OneToMany
     @JoinColumn(name = "house_id", referencedColumnName = "id")
     private List<RoomJPA> roomJPAList;
+
+    @OneToMany
+    @JoinColumn(name = "house_id",referencedColumnName = "id")
+    private List<ListUserHouseJPA> listUserHouseJPAS;
 
 //    @ManyToMany(mappedBy = "houses")
 //    private List<UserJPA> userJPAList;

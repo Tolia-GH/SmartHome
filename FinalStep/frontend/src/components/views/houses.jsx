@@ -183,6 +183,9 @@ export function Houses() {
         $.ajax({
             url: `/api/houses/${houseId}`,
             method: 'DELETE',
+            data: {
+                username: window.sessionStorage.getItem("username")
+            }
         }).then(() => {
             setHouses(houses.filter((house) => house.id !== houseId));
         });

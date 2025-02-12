@@ -18,4 +18,7 @@ public class AddressService {
         addressRepo.save(newAddress);
 
     }
+
+    public void delete(AddressJPA addressJPA) {
+    }
 }

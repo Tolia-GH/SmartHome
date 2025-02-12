@@ -2,16 +2,15 @@ package com.demo.backend.controller;
 
 import com.demo.backend.databaseJPA.Enum.*;
 import com.demo.backend.databaseJPA.ListUserHouseJPA;
-import com.demo.backend.databaseJPA.ListUserHouseRepo;
 import com.demo.backend.databaseJPA.account.UserJPA;
 import com.demo.backend.databaseJPA.address.AddressJPA;
+import com.demo.backend.databaseJPA.address.AddressRepo;
 import com.demo.backend.databaseJPA.device.DeviceJPA;
 import com.demo.backend.databaseJPA.house.HouseJPA;
 import com.demo.backend.databaseJPA.room.RoomJPA;
 import com.demo.backend.requestDTO.HouseDTO;
 import com.demo.backend.response.*;
 import com.demo.backend.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -91,16 +90,19 @@ public class HouseController {
 //        return houses.getHouseResponse();
 //    }
 
-    @Autowired
-    private AccountService accountService;
-    @Autowired
-    private AddressService addressService;
-    @Autowired
-    private HouseService houseService;
-    @Autowired
-    private ListUserHouseRepo listUserHouseRepo;
-    @Autowired
-    private ListUserHouseService listUserHouseService;
+    private final AccountService accountService;
+    private final AddressService addressService;
+    private final HouseService houseService;
+    private final ListUserHouseService listUserHouseService;
+    private final AddressRepo addressRepo;
+
+    public HouseController(AccountService accountService, AddressService addressService, HouseService houseService, ListUserHouseService listUserHouseService, AddressRepo addressRepo) {
+        this.accountService = accountService;
+        this.addressService = addressService;
+        this.houseService = houseService;
+        this.listUserHouseService = listUserHouseService;
+        this.addressRepo = addressRepo;
+    }
 
     @GetMapping("/houses")
     public List<HouseResponse> getHouses(HttpServletRequest request) {
@@ -173,14 +175,12 @@ public class HouseController {
                     housesResponse.getHouseResponse().add(houseResponse);
                 }
 
-                return housesResponse.getHouseResponse();
-
             } else {
                 housesResponse.setSuccess(false);
                 housesResponse.setMessage("User not found!");
 
-                return housesResponse.getHouseResponse();
             }
+            return housesResponse.getHouseResponse();
         } else if (Pattern.matches(regexEmail, username)) {
             userJPA = accountService.findAccountByEmail(username);
             if (userJPA != null) {
@@ -288,7 +288,7 @@ public class HouseController {
                     ListUserHouseJPA listUserHouseJPA = new ListUserHouseJPA();
 
                     listUserHouseJPA.setHouse(newHouse);
-                    listUserHouseJPA.setUser_id(userJPA.getId());
+                    listUserHouseJPA.setUserJPA(userJPA);
 
                     listUserHouseService.addUserHouse(listUserHouseJPA);
 
@@ -319,9 +319,79 @@ public class HouseController {
                     ListUserHouseJPA listUserHouseJPA = new ListUserHouseJPA();
 
                     listUserHouseJPA.setHouse(newHouse);
-                    listUserHouseJPA.setUser_id(userJPA.getId());
+                    listUserHouseJPA.setUserJPA(userJPA);
 
                     listUserHouseService.addUserHouse(listUserHouseJPA);
+
+                } else {
+                    housesResponse.setSuccess(false);
+                    housesResponse.setMessage("User not found!");
+                }
+            }
+        }
+
+        return new HousesResponse();
+    }
+
+    @DeleteMapping("houses/{house_id}")
+    public HousesResponse deleteHouse(HttpServletRequest request, @PathVariable Integer house_id) {
+        HousesResponse housesResponse = new HousesResponse();
+
+        String username = request.getParameter("username");
+
+        String regexPhone = "\\+[1-9]+[0-9]*";
+        String regexEmail = ".*@.+\\.com";
+
+        UserJPA userJPA;
+
+        if (username == null || username.isEmpty()) {
+            housesResponse.setSuccess(false);
+            housesResponse.setMessage("Username can't be empty!");
+            return housesResponse;
+        } else {
+            if (Pattern.matches(regexPhone, username)) {
+                userJPA = accountService.findAccountByPhone(username);
+                if (userJPA != null) {
+                    housesResponse.setSuccess(true);
+                    housesResponse.setMessage("User found by phone number");
+
+                    HouseJPA houseJPA = houseService.findHouseByID(house_id);
+
+                    AddressJPA addressJPA = houseJPA.getAddressJPA();
+
+                    List<ListUserHouseJPA> listUserHouseJPAS = houseJPA.getListUserHouseJPAS();
+
+                    for (ListUserHouseJPA listUserHouseJPA : listUserHouseJPAS) {
+                        listUserHouseService.delete(listUserHouseJPA);
+                    }
+
+                    addressService.delete(addressJPA);
+                    houseService.delete(houseJPA);
+
+                } else {
+                    housesResponse.setSuccess(false);
+                    housesResponse.setMessage("User not found!");
+                }
+
+            } else if (Pattern.matches(regexEmail, username)) {
+                userJPA = accountService.findAccountByEmail(username);
+
+                if (userJPA != null) {
+                    housesResponse.setSuccess(true);
+                    housesResponse.setMessage("User found by phone number");
+
+                    HouseJPA houseJPA = houseService.findHouseByID(house_id);
+
+                    AddressJPA addressJPA = houseJPA.getAddressJPA();
+
+                    List<ListUserHouseJPA> listUserHouseJPAS = houseJPA.getListUserHouseJPAS();
+
+                    for (ListUserHouseJPA listUserHouseJPA : listUserHouseJPAS) {
+                        listUserHouseService.delete(listUserHouseJPA);
+                    }
+
+                    addressService.delete(addressJPA);
+                    houseService.delete(houseJPA);
 
                 } else {
                     housesResponse.setSuccess(false);

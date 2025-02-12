@@ -9,6 +9,8 @@ import com.demo.backend.databaseJPA.house.HouseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class HouseService {
     private final HouseRepo houseRepo;
@@ -20,5 +22,13 @@ public class HouseService {
     public void addHouse(HouseJPA newHouse) {
 
         houseRepo.save(newHouse);
+    }
+
+    public HouseJPA findHouseByID(Integer houseId) {
+        return houseRepo.findById(houseId).orElse(null);
+    }
+
+    public void delete(HouseJPA houseJPA) {
+        houseRepo.delete(houseJPA);
     }
 }

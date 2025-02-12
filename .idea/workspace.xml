@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afcc4807-f207-4e36-ad66-530491e6a5f7" name="Changes" comment="" />
+    <list default="true" id="afcc4807-f207-4e36-ad66-530491e6a5f7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/ListUserHouseJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/ListUserHouseJPA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/house/HouseJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/databaseJPA/house/HouseJPA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/AddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/HouseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/HouseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/ListUserHouseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/ListUserHouseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalStep/frontend/src/components/views/houses.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/frontend/src/components/views/houses.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +62,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.BackendApplication.executor": "Debug",
+    "Spring Boot.BackendApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "develop",
     "jdk.selected.JAVA_MODULE": "17",
@@ -238,17 +247,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java</url>
-          <line>176</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java</url>
-          <line>90</line>
+          <line>89</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java</url>
-          <line>84</line>
+          <line>83</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
