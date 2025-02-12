@@ -2,11 +2,14 @@ package com.demo.backend.databaseJPA.account;
 
 import com.demo.backend.databaseJPA.Enum.Gender;
 import com.demo.backend.databaseJPA.Enum.PostgreSQLEnumType;
+import com.demo.backend.databaseJPA.ListUserHouseJPA;
 import com.demo.backend.databaseJPA.contact.ContactJPA;
+import com.demo.backend.databaseJPA.house.HouseJPA;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -29,4 +32,16 @@ public class UserJPA {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id",referencedColumnName = "user_id")
     private ContactJPA contactJPA;
+
+    @OneToMany
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private List<ListUserHouseJPA> listUserHouseJPAS;
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "list_user_house",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "house_id")
+//    )
+//    private List<HouseJPA> houses;
 }

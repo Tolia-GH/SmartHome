@@ -5,7 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afcc4807-f207-4e36-ad66-530491e6a5f7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/FinalStep/frontend/src/components/main/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/frontend/src/components/main/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/Semester_SmartHome.AbSGtg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/Semester_SmartHome.AbSGtg.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/business_logic.H0LIiw.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/business_logic.H0LIiw.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/database_lab1.iOyqsA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/database_lab1.iOyqsA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2a252825-e89e-455b-a508-1343320b82b7/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/39facc08-932d-4f86-9a8b-f9c82947f8b1/storage_v2/_src_/database/studs.ww2LBg/schema/smart_home.lU1XlA.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -35,51 +50,59 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2d5fWvWJuICUC83kDqueCU87mM4" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.BackendApplication.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/2398768715qq.com/Documents/GitHub/ITMO-PE/DataBase/SemesterWork&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.6655173&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.BackendApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "develop",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/2398768715qq.com/Documents/GitHub/ITMO-PE/DataBase/SemesterWork",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.start.executor": "Run",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.6655173",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ],
-    &quot;RunConfigurationTargetLRU&quot;: [
-      &quot;39facc08-932d-4f86-9a8b-f9c82947f8b1/database/\&quot;studs\&quot;/schema/\&quot;Semester_SmartHome\&quot;&quot;,
-      &quot;39facc08-932d-4f86-9a8b-f9c82947f8b1/database/\&quot;studs\&quot;/schema/\&quot;smart_home\&quot;&quot;
+    "RunConfigurationTargetLRU": [
+      "39facc08-932d-4f86-9a8b-f9c82947f8b1/database/\"studs\"/schema/\"Semester_SmartHome\"",
+      "39facc08-932d-4f86-9a8b-f9c82947f8b1/database/\"studs\"/schema/\"smart_home\""
     ]
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.demo.backend.response" />
+    </key>
+  </component>
   <component name="RunManager" selected="Spring Boot.BackendApplication">
     <configuration name="DropIndex" type="DatabaseScript">
       <script-file value="$PROJECT_DIR$/DropIndex.sql" />
@@ -224,5 +247,31 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/HouseController.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/RoomController.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/DeviceController.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
