@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afcc4807-f207-4e36-ad66-530491e6a5f7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/controller/DeviceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/requestDTO/DeviceDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinalStep/backend/src/main/java/com/demo/backend/service/DeviceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalStep/frontend/src/components/views/houses.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/FinalStep/frontend/src/components/views/houses.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="afcc4807-f207-4e36-ad66-530491e6a5f7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,7 +53,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.BackendApplication.executor": "Debug",
+    "Spring Boot.BackendApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "develop",
     "jdk.selected.JAVA_MODULE": "17",
