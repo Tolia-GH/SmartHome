@@ -81,7 +81,7 @@ public class HouseController {
 //
 //        house2.setRooms(Arrays.asList(room3));
 //
-//        HousesResponse houses = new HousesResponse();
+//        DashboardResponse houses = new DashboardResponse();
 //        houses.setSuccess(true);
 //        houses.setMessage("Success");
 //        houses.getHouseResponse().add(house1);
@@ -107,13 +107,13 @@ public class HouseController {
     @GetMapping("/houses")
     public List<HouseResponse> getHouses(HttpServletRequest request) {
 
-        HousesResponse housesResponse = new HousesResponse();
+        DashboardResponse dashboardResponse = new DashboardResponse();
 
         if (request.getParameter("username") == null ||
                 request.getParameter("username").isEmpty()) {
-            housesResponse.setSuccess(false);
-            housesResponse.setMessage("Username can't be empty!");
-            return housesResponse.getHouseResponse();
+            dashboardResponse.setSuccess(false);
+            dashboardResponse.setMessage("Username can't be empty!");
+            return dashboardResponse.getHouseResponse();
         }
 
         String username = request.getParameter("username");
@@ -128,8 +128,8 @@ public class HouseController {
         if (Pattern.matches(regexPhone, username)) {
             userJPA = accountService.findAccountByPhone(username);
             if (userJPA != null) {
-                housesResponse.setSuccess(true);
-                housesResponse.setMessage("User found by phone number");
+                dashboardResponse.setSuccess(true);
+                dashboardResponse.setMessage("User found by phone number");
 
                 List<ListUserHouseJPA> userHouseJPAList = userJPA.getListUserHouseJPAS();
 
@@ -172,20 +172,20 @@ public class HouseController {
                     }
                     houseResponse.setRooms(roomResponseList);
 
-                    housesResponse.getHouseResponse().add(houseResponse);
+                    dashboardResponse.getHouseResponse().add(houseResponse);
                 }
 
             } else {
-                housesResponse.setSuccess(false);
-                housesResponse.setMessage("User not found!");
+                dashboardResponse.setSuccess(false);
+                dashboardResponse.setMessage("User not found!");
 
             }
-            return housesResponse.getHouseResponse();
+            return dashboardResponse.getHouseResponse();
         } else if (Pattern.matches(regexEmail, username)) {
             userJPA = accountService.findAccountByEmail(username);
             if (userJPA != null) {
-                housesResponse.setSuccess(true);
-                housesResponse.setMessage("User found by phone number");
+                dashboardResponse.setSuccess(true);
+                dashboardResponse.setMessage("User found by phone number");
 
                 List<ListUserHouseJPA> userHouseJPAList = userJPA.getListUserHouseJPAS();
 
@@ -229,27 +229,27 @@ public class HouseController {
                     }
                     houseResponse.setRooms(roomResponseList);
 
-                    housesResponse.getHouseResponse().add(houseResponse);
+                    dashboardResponse.getHouseResponse().add(houseResponse);
                 }
 
-                return housesResponse.getHouseResponse();
+                return dashboardResponse.getHouseResponse();
 
 
             } else {
-                housesResponse.setSuccess(false);
-                housesResponse.setMessage("User not found!");
+                dashboardResponse.setSuccess(false);
+                dashboardResponse.setMessage("User not found!");
 
-                return housesResponse.getHouseResponse();
+                return dashboardResponse.getHouseResponse();
             }
 
         }
 
-        return housesResponse.getHouseResponse();
+        return dashboardResponse.getHouseResponse();
     }
 
     @PostMapping("/houses")
-    public HousesResponse addHouse(@RequestBody HouseDTO houseDTO) {
-        HousesResponse housesResponse = new HousesResponse();
+    public DashboardResponse addHouse(@RequestBody HouseDTO houseDTO) {
+        DashboardResponse dashboardResponse = new DashboardResponse();
 
         String username = houseDTO.getUsername();
 
@@ -257,9 +257,9 @@ public class HouseController {
         String regexEmail = ".*@.+\\.com";
 
         if (username == null || username.isEmpty()) {
-            housesResponse.setSuccess(false);
-            housesResponse.setMessage("Username can't be empty!");
-            return housesResponse;
+            dashboardResponse.setSuccess(false);
+            dashboardResponse.setMessage("Username can't be empty!");
+            return dashboardResponse;
         } else {
 
             UserJPA userJPA;
@@ -267,8 +267,8 @@ public class HouseController {
             if (Pattern.matches(regexPhone, username)) {
                 userJPA = accountService.findAccountByPhone(username);
                 if (userJPA != null) {
-                    housesResponse.setSuccess(true);
-                    housesResponse.setMessage("User found by phone number");
+                    dashboardResponse.setSuccess(true);
+                    dashboardResponse.setMessage("User found by phone number");
 
                     HouseJPA newHouse = new HouseJPA();
 
@@ -293,16 +293,16 @@ public class HouseController {
                     listUserHouseService.addUserHouse(listUserHouseJPA);
 
                 } else {
-                    housesResponse.setSuccess(false);
-                    housesResponse.setMessage("User not found!");
+                    dashboardResponse.setSuccess(false);
+                    dashboardResponse.setMessage("User not found!");
                 }
 
             } else if (Pattern.matches(regexEmail, username)) {
                 userJPA = accountService.findAccountByEmail(username);
 
                 if (userJPA != null) {
-                    housesResponse.setSuccess(true);
-                    housesResponse.setMessage("User found by phone number");
+                    dashboardResponse.setSuccess(true);
+                    dashboardResponse.setMessage("User found by phone number");
 
                     AddressJPA newAddress = new AddressJPA();
                     newAddress.setCountry(Country.valueOf(houseDTO.getCountry()));
@@ -324,18 +324,18 @@ public class HouseController {
                     listUserHouseService.addUserHouse(listUserHouseJPA);
 
                 } else {
-                    housesResponse.setSuccess(false);
-                    housesResponse.setMessage("User not found!");
+                    dashboardResponse.setSuccess(false);
+                    dashboardResponse.setMessage("User not found!");
                 }
             }
         }
 
-        return new HousesResponse();
+        return new DashboardResponse();
     }
 
     @DeleteMapping("houses/{house_id}")
-    public HousesResponse deleteHouse(HttpServletRequest request, @PathVariable Integer house_id) {
-        HousesResponse housesResponse = new HousesResponse();
+    public DashboardResponse deleteHouse(HttpServletRequest request, @PathVariable Integer house_id) {
+        DashboardResponse dashboardResponse = new DashboardResponse();
 
         String username = request.getParameter("username");
 
@@ -345,15 +345,15 @@ public class HouseController {
         UserJPA userJPA;
 
         if (username == null || username.isEmpty()) {
-            housesResponse.setSuccess(false);
-            housesResponse.setMessage("Username can't be empty!");
-            return housesResponse;
+            dashboardResponse.setSuccess(false);
+            dashboardResponse.setMessage("Username can't be empty!");
+            return dashboardResponse;
         } else {
             if (Pattern.matches(regexPhone, username)) {
                 userJPA = accountService.findAccountByPhone(username);
                 if (userJPA != null) {
-                    housesResponse.setSuccess(true);
-                    housesResponse.setMessage("User found by phone number");
+                    dashboardResponse.setSuccess(true);
+                    dashboardResponse.setMessage("User found by phone number");
 
                     HouseJPA houseJPA = houseService.findHouseByID(house_id);
 
@@ -369,16 +369,16 @@ public class HouseController {
                     houseService.delete(houseJPA);
 
                 } else {
-                    housesResponse.setSuccess(false);
-                    housesResponse.setMessage("User not found!");
+                    dashboardResponse.setSuccess(false);
+                    dashboardResponse.setMessage("User not found!");
                 }
 
             } else if (Pattern.matches(regexEmail, username)) {
                 userJPA = accountService.findAccountByEmail(username);
 
                 if (userJPA != null) {
-                    housesResponse.setSuccess(true);
-                    housesResponse.setMessage("User found by phone number");
+                    dashboardResponse.setSuccess(true);
+                    dashboardResponse.setMessage("User found by phone number");
 
                     HouseJPA houseJPA = houseService.findHouseByID(house_id);
 
@@ -394,13 +394,13 @@ public class HouseController {
                     houseService.delete(houseJPA);
 
                 } else {
-                    housesResponse.setSuccess(false);
-                    housesResponse.setMessage("User not found!");
+                    dashboardResponse.setSuccess(false);
+                    dashboardResponse.setMessage("User not found!");
                 }
             }
         }
 
-        return new HousesResponse();
+        return new DashboardResponse();
     }
 }
 

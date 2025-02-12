@@ -3,6 +3,7 @@ package com.demo.backend.databaseJPA.sensor;
 import com.demo.backend.databaseJPA.Enum.SensorType;
 import com.demo.backend.databaseJPA.room.RoomJPA;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -26,7 +27,7 @@ public class SensorJPA {
     private Boolean available;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, name = "sensor_type")
+    @Type(type = "pgsql_enum")
     private SensorType sensorType;
 }
 

@@ -4,6 +4,7 @@ import com.demo.backend.databaseJPA.Enum.ProblemType;
 import com.demo.backend.databaseJPA.account.UserJPA;
 import com.demo.backend.databaseJPA.supporter.SupporterJPA;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -31,7 +32,7 @@ public class IssueJPA {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, name = "issue_type")
+    @Type(type = "pgsql_enum")
     private ProblemType issueType;
 
     @Column(nullable = false, name = "create_time")

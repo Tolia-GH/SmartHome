@@ -83,7 +83,7 @@ export function Houses() {
     const [openDialog, setOpenDialog] = React.useState(false);
     const [dialogType, setDialogType] = React.useState(""); // To differentiate between adding House/Room/Device
     const [newHouse, setNewHouse] = React.useState({ houseType: "", country: "", city: "", street: ""});
-    const [newRoom, setNewRoom] = React.useState({ roomType: "", houseId: null });
+    const [newRoom, setNewRoom] = React.useState({ houseId: null, area_size: 0, height: 0, roomType: "", isFilled: false});
     const [newDevice, setNewDevice] = React.useState({ deviceType: "", manufacture: "", roomId: null });
     const [snackBarOpen, setSnackBarOpen] = React.useState(false);
 
@@ -118,7 +118,13 @@ export function Houses() {
         return $.ajax({
             url: `/api/houses/${room.houseId}/rooms`,
             method: 'POST',
-            data: JSON.stringify(room),
+            data: JSON.stringify({
+                username: window.sessionStorage.getItem("username"),
+                area_size: room.areaSize,
+                height: room.height,
+                room_type: room.roomType,
+                is_filled: room.isFilled
+            }),
             contentType: 'application/json',
         });
     };
@@ -195,6 +201,9 @@ export function Houses() {
         $.ajax({
             url: `/api/houses/${houseId}/rooms/${roomId}`,
             method: 'DELETE',
+            data: {
+                username: window.sessionStorage.getItem("username")
+            }
         }).then(() => {
             const updatedHouses = houses.map((house) => {
                 if (house.id === houseId) {
@@ -210,6 +219,9 @@ export function Houses() {
         $.ajax({
             url: `/api/rooms/${roomId}/devices/${deviceId}`,
             method: 'DELETE',
+            data: {
+                username: window.sessionStorage.getItem("username")
+            }
         }).then(() => {
             const updatedHouses = houses.map((house) => {
                 if (house.id === houseId) {
@@ -225,23 +237,6 @@ export function Houses() {
             });
             setHouses(updatedHouses);
         });
-    };
-
-    const handleCountryChange = (e) => {
-        const selectedCountry = e.target.value;
-        setNewHouse({
-            ...newHouse,
-            country: selectedCountry,
-            city: "" // Reset city when country changes
-        });
-    };
-
-    const handleCityChange = (e) => {
-        setNewHouse({ ...newHouse, city: e.target.value });
-    };
-
-    const handleStreetChange = (e) => {
-        setNewHouse({ ...newHouse, street: e.target.value });
     };
 
     return (
@@ -349,7 +344,7 @@ export function Houses() {
                 <DialogContent>
                     {dialogType === "house" && (
                         <>
-                            <FormControl fullWidth sx={{ mb: 0 }}>
+                            <FormControl fullWidth sx={{ mb: 2}}>
                                 <InputLabel>House Type</InputLabel>
                                 <Select
                                     value={newHouse.houseType}
@@ -362,7 +357,7 @@ export function Houses() {
                                     <MenuItem value="ORDINARY">Ordinary</MenuItem>
                                 </Select>
                                 </FormControl>
-                            <FormControl fullWidth sx={{ mb: 0 }}>
+                            <FormControl fullWidth sx={{ mb: 2 }}>
                                 <InputLabel>Country</InputLabel>
                                 <Select
                                     value={newHouse.country}
@@ -375,7 +370,7 @@ export function Houses() {
                                     ))}
                                 </Select>
                                 </FormControl>
-                            <FormControl fullWidth sx={{ mb: 0 }}>
+                            <FormControl fullWidth sx={{ mb: 2 }}>
                                 <InputLabel>City</InputLabel>
                                 <Select
                                     value={newHouse.city}
@@ -401,7 +396,7 @@ export function Houses() {
                     )}
                     {dialogType === "room" && (
                         <>
-                            <FormControl fullWidth sx={{ mb: 0 }}>
+                            <FormControl fullWidth sx={{ mb: 2 }}>
                                 <InputLabel>Room Type</InputLabel>
                                 <Select
                                     value={newRoom.roomType}
@@ -412,6 +407,35 @@ export function Houses() {
                                     <MenuItem value="BEDROOM">Bedroom</MenuItem>
                                     <MenuItem value="BATHROOM">Bathroom</MenuItem>
                                     <MenuItem value="LIVING">Living Room</MenuItem>
+                                </Select>
+                            </FormControl>
+
+                            <TextField
+                                label="Area Size (m²)"
+                                fullWidth
+                                type="number"
+                                value={newRoom.areaSize}
+                                onChange={(e) => setNewRoom({ ...newRoom, areaSize: parseFloat(e.target.value) })}
+                                sx={{ mb: 2 }}
+                            />
+
+                            <TextField
+                                label="Height (m)"
+                                fullWidth
+                                type="number"
+                                value={newRoom.height}
+                                onChange={(e) => setNewRoom({ ...newRoom, height: parseFloat(e.target.value) })}
+                                sx={{ mb: 2 }}
+                            />
+
+                            <FormControl fullWidth sx={{ mb: 2 }}>
+                                <InputLabel>Is Filled</InputLabel>
+                                <Select
+                                    value={newRoom.isFilled}
+                                    onChange={(e) => setNewRoom({ ...newRoom, isFilled: e.target.value })}
+                                >
+                                    <MenuItem value={true}>Yes</MenuItem>
+                                    <MenuItem value={false}>No</MenuItem>
                                 </Select>
                             </FormControl>
                         </>

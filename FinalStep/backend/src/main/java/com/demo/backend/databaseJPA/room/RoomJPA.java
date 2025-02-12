@@ -5,6 +5,7 @@ import com.demo.backend.databaseJPA.device.DeviceJPA;
 import com.demo.backend.databaseJPA.house.HouseJPA;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,7 +28,7 @@ public class RoomJPA {
     private Double height;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, name = "room_type")
+    @Type(type = "pgsql_enum")
     private RoomType roomType;
 
     @Column(nullable = false, name = "is_filled")
